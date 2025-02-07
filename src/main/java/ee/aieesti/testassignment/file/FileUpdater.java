@@ -52,6 +52,8 @@ public class FileUpdater {
                             dbFile.header() ,
                             dbFile.filename());
                     writeLog(logText);
+
+                    i++;
                 }
             }
 

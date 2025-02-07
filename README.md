@@ -12,7 +12,9 @@ Kasutasin ühte välist teeki, milleks on [Apache POI](https://poi.apache.org/).
 
 ## Lahendus
 
-Lahendust saab jooksutada **Main.java** klassi tööle pannes. Peamine loogika on klassis **../file/FileUpdater.java**.
+Lahendust saab jooksutada **Main.java** klassi tööle pannes.
+
+Koodi käima pannes tuleb konsooli teade `main ERROR Log4j API could not find a logging provider.`. Midagi ei ole katki. Teek [Apache POI](https://poi.apache.org/) sõltub logimis teegist [Log4j API](https://logging.apache.org/log4j/2.x/manual/api.html) ja tahab, et seda kastutataks. Mina seda ei kasutanud.
 
 ### Üles laadimine
 
