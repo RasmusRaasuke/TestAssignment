@@ -6,6 +6,7 @@ import ee.aieesti.testassignment.exception.UpdatingFileException;
 import ee.aieesti.testassignment.exception.WritingLogException;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -68,10 +69,24 @@ public class FileUpdater {
     }
 
     private void editParagraph(XWPFParagraph paragraph, String newText) {
-        for (int i = 0; i < paragraph.getRuns().size(); i++) {
-            paragraph.removeRun(0);
+        List<XWPFRun> runs = paragraph.getRuns();
+
+        XWPFRun firstRun = runs.getFirst();
+        String fontFamily = firstRun.getFontFamily();
+        String color = firstRun.getColor();
+        boolean isBold = firstRun.isBold();
+        boolean isItalic = firstRun.isItalic();
+
+        for (int i = runs.size() - 1; i >= 0; i--) {
+            paragraph.removeRun(i);
         }
-        paragraph.createRun().setText(newText);
+
+        XWPFRun newRun = paragraph.createRun();
+        newRun.setText(newText);
+        newRun.setFontFamily(fontFamily);
+        newRun.setColor(color);
+        newRun.setBold(isBold);
+        newRun.setItalic(isItalic);
     }
 
     private void writeLog(String logText) {
